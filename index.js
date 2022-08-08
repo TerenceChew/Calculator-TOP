@@ -35,3 +35,18 @@ function operate(operator, n1, n2) {
 
   return result;
 }
+
+const buttons = document.querySelectorAll('.displayed');
+const display1 = document.querySelector('.display1');
+let display1Content;
+
+buttons.forEach(btn => btn.addEventListener('click', displayBtnValue));
+
+function displayBtnValue(e) {
+  const btnValue = e.target.textContent;
+  const oldDisplay1Content = display1.textContent;
+  const newDisplay1Content = oldDisplay1Content + btnValue;
+  display1.textContent = newDisplay1Content;
+  display1Content = newDisplay1Content;
+  console.log(display1Content.trim());
+}
