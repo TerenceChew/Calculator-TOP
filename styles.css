@@ -26,8 +26,7 @@ body {
   display: grid;
   grid-template-columns: 4fr 4fr 2.25fr;
   grid-template-rows: 2.3fr 8fr;
-  row-gap: .45rem;
-  column-gap: .35rem;
+  gap: .75rem .35rem;
   padding: 1.8rem .5rem .5rem .5rem;
   border: .35rem solid black;
   border-radius: .5rem;
@@ -87,7 +86,7 @@ body {
 }
 
 .grey-bg {
-  background-color: rgb(201, 201, 201);
+  background-color: rgb(185, 185, 185);
 }
 
 .red-bg {
