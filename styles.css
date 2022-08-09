@@ -8,6 +8,7 @@
 
 body {
   min-height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .center {
@@ -25,9 +26,9 @@ body {
   height: 30rem;
   display: grid;
   grid-template-columns: 4fr 4fr 2.25fr;
-  grid-template-rows: 2.3fr 8fr;
-  gap: .75rem .35rem;
-  padding: 1.8rem .5rem .5rem .5rem;
+  grid-template-rows: 2.4fr 8fr;
+  gap: .65rem .35rem;
+  padding: 1.55rem .5rem .5rem .5rem;
   border: .35rem solid black;
   border-radius: .5rem;
 }
@@ -40,14 +41,13 @@ body {
   justify-content: space-between;
   border: .55rem solid black;
   border-radius: .7rem;
-  padding: .55rem 0;
+  padding: .5rem .55rem;
 }
 
 .display1, .display2 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 .55rem;
+  text-align: end;
+  font-size: 1.1rem;
+  word-break: break-all;
 }
 
 .left-buttons {
@@ -80,6 +80,7 @@ body {
   margin: .15rem;
   border: .15rem solid black;
   border-radius: .25rem;
+  font-weight: bold;
 }
 
 .btn:hover {
