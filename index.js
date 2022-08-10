@@ -109,8 +109,12 @@ function evaluate() {
   n2 = d2Content;
   let result = operate(currOperator, n1, n2);
   if (result === undefined) return;
-  displayResult(result);
+  displayResult(processResult(result));
   resetOperation();
+}
+
+function processResult(result) {
+  return parseFloat(result.toFixed(5));
 }
 
 function displayResult(result) {
