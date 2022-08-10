@@ -1,3 +1,141 @@
+let d1Content;
+let d2Content;
+
+// Operation variables
+let n1;
+let n2;
+let currOperator;
+
+// Buttons
+const numBtns = document.querySelectorAll('.num');
+const operatorBtns = document.querySelectorAll('.operator');
+const acBtn = document.querySelector('.ac');
+const delBtn = document.querySelector('.del');
+const percentBtn = document.querySelector('.percent');
+const decimalBtn = document.querySelector('.decimal');
+const unaryBtn = document.querySelector('.unary');
+const equalBtn = document.querySelector('.equal');
+
+// Displays
+const d1 = document.querySelector('.display1');
+const d2 = document.querySelector('.display2');
+
+// Event listeners
+numBtns.forEach(btn => btn.addEventListener('click', appendNumber));
+operatorBtns.forEach(btn => btn.addEventListener('click', appendOperator));
+acBtn.addEventListener('click', clearDisplays);
+delBtn.addEventListener('click', del);
+percentBtn.addEventListener('click', appendPercent);
+decimalBtn.addEventListener('click', appendDecimal);
+unaryBtn.addEventListener('click', appendUnary);
+equalBtn.addEventListener('click', evaluate);
+
+function appendNumber(e) {
+  console.log('N')
+  const num = e.target.textContent;
+  d2.textContent += num;
+  d2Content = d2.textContent;
+}
+
+function appendOperator(e) {
+  const operator = e.target.textContent;
+  console.log('Ope')
+  if (!d1Content && !d2Content) return;
+
+  if (d1Content && !d2Content && lastCharIsOperator(d1Content)) {
+    replaceOperator(operator);
+    console.log("1")
+  } else if (currOperator && d2Content) {
+    evaluate();
+    continueOperation(operator);
+    console.log("2")
+  } else {
+    n1 = d2Content;
+    currOperator = operator;
+    d1.textContent = d2Content + ' ' + operator;
+    d1Content = d1.textContent;
+    clearD2();
+    console.log("3")
+  }
+}
+
+function lastCharIsOperator(d1Content) {
+  return '÷×+-'.includes(d1Content[d1Content.length - 1]);
+}
+
+function replaceOperator(operator) {
+  currOperator = operator;
+  d1.textContent = d1.textContent.slice(0, -1) + operator;
+  d1Content = d1.textContent;
+}
+
+function continueOperation(operator) {
+  n1 = d2Content;
+  currOperator = operator;
+  d1.textContent = d2Content + ' ' + operator;
+  d1Content = d1.textContent;
+  clearD2();
+}
+
+function clearDisplays() {
+  console.log('C Dis')
+  clearD1();
+  clearD2();
+  resetOperation();
+}
+
+function del() {
+  console.log('DEL')
+  d2.textContent = d2.textContent.slice(0, -1);
+  d2Content = d2.textContent;
+}
+
+function appendPercent() {
+  console.log('P')
+}
+
+function appendDecimal() {
+  console.log('D')
+}
+
+function appendUnary() {
+  console.log('U')
+}
+
+function evaluate() {
+  console.log('E')
+  if (!d2Content) return;
+
+  n2 = d2Content;
+  let result = operate(currOperator, n1, n2);
+  if (result === undefined) return;
+  displayResult(result);
+  resetOperation();
+}
+
+function displayResult(result) {
+  d1.textContent += ' ' + d2Content;
+  d1Content = d1.textContent;
+  d2.textContent = result;
+  d2Content = d2.textContent;
+}
+
+function resetOperation() {
+  n1 = '';
+  n2 = '';
+  currOperator = '';
+}
+
+function clearD1() {
+  d1.textContent = '';
+  d1Content = '';
+}
+
+function clearD2() {
+  d2.textContent = '';
+  d2Content = '';
+}
+
 function add(a, b) {
   return a + b;
 }
@@ -12,11 +150,13 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  if (b === 0) return 'LMAO. Division by 0 not allowed';
+  if (b === 0) return 'LMAO! Can\'t divide by zero';
   return a / b;
 }
 
-function operate(operator, n1, n2) {
+function operate(operator, a, b) {
+  let n1 = Number(a);
+  let n2 = Number(b);
   let result;
 
   switch (operator) {
@@ -26,53 +166,14 @@ function operate(operator, n1, n2) {
     case '-':
       result = subtract(n1, n2);
       break;
-    case '*':
+    case '×':
       result = multiply(n1, n2);
       break;
-    case '/':
+    case '÷':
       result = divide(n1, n2);
   }
 
   return result;
 }
 
-// Value of these buttons will get displayed when clicked
-const displayedBtns = document.querySelectorAll('.displayed');
-const display1 = document.querySelector('.display1');
-let display1Content;
 
-displayedBtns.forEach(btn => btn.addEventListener('click', displayBtnValue));
-
-function displayBtnValue(e) {
-  const btnValue = e.target.textContent;
-  const oldDisplay1Content = display1.textContent;
-  const newDisplay1Content = (oldDisplay1Content + btnValue).trim();
-  display1.textContent = newDisplay1Content;
-  display1Content = newDisplay1Content;
-  console.log(display1Content);
-}
-
-// Clear displays upon button click
-const display2 = document.querySelector('.display2');
-let display2Content;
-const acBtn = document.querySelector('.ac');
-
-acBtn.addEventListener('click', clearDisplays);
-
-function clearDisplays() {
-  display1.textContent = '';
-  display1Content = '';
-  display2.textContent = '';
-  display2Content = '';
-}
-
-// Backspace upon button click
-const delBtn = document.querySelector('.del');
-delBtn.addEventListener('click', backspace);
-
-function backspace() {
-  const newDisplay1Content = display1Content.slice(0, -1);
-  display1.textContent = newDisplay1Content;
-  display1Content = newDisplay1Content;
-  console.log(display1Content);
-}
