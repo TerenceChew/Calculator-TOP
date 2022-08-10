@@ -92,6 +92,10 @@ function del() {
 
 function appendPercent() {
   console.log('P')
+  if (d2.textContent.includes('%')) return;
+  if (!d2.textContent) return;
+  d2.textContent += '%';
+  d2Content = d2.textContent;
 }
 
 function appendDecimal() {
@@ -166,17 +170,29 @@ function divide(a, b) {
   return a / b;
 }
 
+function addPercent(a, b) {
+  return a + (a * b);
+}
+
+function subtractPercent(a, b) {
+  return a - (a * b);
+}
+
+function processOperand(operand) {
+  return operand.includes('%') ? Number(operand.slice(0, -1)) / 100 : Number(operand);
+}
+
 function operate(operator, a, b) {
-  let n1 = Number(a);
-  let n2 = Number(b);
+  let n1 = processOperand(a);
+  let n2 = processOperand(b);
   let result;
 
   switch (operator) {
     case '+':
-      result = add(n1, n2);
+      result = b.includes('%') ? addPercent(n1, n2) : add(n1, n2);
       break;
     case '-':
-      result = subtract(n1, n2);
+      result = b.includes('%') ? subtractPercent(n1, n2) : subtract(n1, n2);
       break;
     case '×':
       result = multiply(n1, n2);
