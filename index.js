@@ -96,6 +96,14 @@ function appendPercent() {
 
 function appendDecimal() {
   console.log('D')
+  if (d2.textContent.includes('.')) return;
+  if (!d2.textContent) {
+    d2.textContent += '0.';
+    d2Content = d2.textContent;
+  } else {
+    d2.textContent += '.';
+    d2Content = d2.textContent;
+  }
 }
 
 function appendUnary() {
@@ -104,7 +112,7 @@ function appendUnary() {
 
 function evaluate() {
   console.log('E')
-  if (!d2Content) return;
+  if (!d1Content || !d2Content) return;
 
   n2 = d2Content;
   let result = operate(currOperator, n1, n2);
