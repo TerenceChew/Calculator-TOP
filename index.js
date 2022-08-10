@@ -50,13 +50,17 @@ function appendOperator(e) {
     continueOperation(operator);
     console.log("2")
   } else {
-    n1 = d2Content;
+    n1 = verifyOperandFormat(d2Content);
     currOperator = operator;
-    d1.textContent = d2Content + ' ' + operator;
+    d1.textContent = n1 + ' ' + operator;
     d1Content = d1.textContent;
     clearD2();
     console.log("3")
   }
+}
+
+function verifyOperandFormat(operand) {
+  return operand.endsWith('.') ? operand.slice(0, -1) : operand;
 }
 
 function lastCharIsOperator(d1Content) {
@@ -70,9 +74,9 @@ function replaceOperator(operator) {
 }
 
 function continueOperation(operator) {
-  n1 = d2Content;
+  n1 = verifyOperandFormat(d2Content);
   currOperator = operator;
-  d1.textContent = d2Content + ' ' + operator;
+  d1.textContent = n1 + ' ' + operator;
   d1Content = d1.textContent;
   clearD2();
 }
@@ -118,7 +122,7 @@ function evaluate() {
   console.log('E')
   if (!d1Content || !d2Content) return;
 
-  n2 = d2Content;
+  n2 = verifyOperandFormat(d2Content);
   let result = operate(currOperator, n1, n2);
   if (result === undefined) return;
   displayResult(processResult(result));
@@ -130,7 +134,7 @@ function processResult(result) {
 }
 
 function displayResult(result) {
-  d1.textContent += ' ' + d2Content;
+  d1.textContent += ' ' + n2;
   d1Content = d1.textContent;
   d2.textContent = result;
   d2Content = d2.textContent;
