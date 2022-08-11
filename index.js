@@ -59,6 +59,7 @@ function appendOperator(e) {
   }
 }
 
+// If an operand ends with a decimal, the decimal will be removed
 function verifyOperandFormat(operand) {
   return operand.endsWith('.') ? operand.slice(0, -1) : operand;
 }
@@ -116,6 +117,15 @@ function appendDecimal() {
 
 function appendUnary() {
   console.log('U')
+  if (!d2.textContent) {
+    d2.textContent += '-';
+    d2Content = d2.textContent;
+    return;
+  }
+  d2.textContent = d2Content.startsWith('-') ? 
+                   d2Content.replace('-', '') :
+                   '-' + d2Content;
+  d2Content = d2.textContent;
 }
 
 function evaluate() {
@@ -134,7 +144,7 @@ function processResult(result) {
 }
 
 function displayResult(result) {
-  d1.textContent += ' ' + n2;
+  d1.textContent += n2.startsWith('-') ? ` (${n2})` : ` ${n2}`;
   d1Content = d1.textContent;
   d2.textContent = result;
   d2Content = d2.textContent;
