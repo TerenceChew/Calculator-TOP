@@ -113,8 +113,10 @@ main {
 footer {
   flex-wrap: wrap;
   gap: .55rem;
-  font-size: 1.1rem;
-  letter-spacing: .025rem;
+}
+
+footer p {
+  font-family: 'Courier New', Courier, monospace;
 }
 
 footer a {

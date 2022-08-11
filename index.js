@@ -218,4 +218,9 @@ function operate(operator, a, b) {
   return result;
 }
 
+// Footer
+const footerText = document.querySelector('.footer-text');
+let currYear = new Date().getFullYear();
+footerText.textContent = `Copyright Ⓒ ${currYear} Terence`;
+
 
