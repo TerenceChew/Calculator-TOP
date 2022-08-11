@@ -144,7 +144,7 @@ function processResult(result) {
 }
 
 function displayResult(result) {
-  d1.textContent += n2.startsWith('-') ? ` (${n2})` : ` ${n2}`;
+  d1.textContent += n2.startsWith('-') ? ` (${n2}) =` : ` ${n2} =`;
   d1Content = d1.textContent;
   d2.textContent = result;
   d2Content = d2.textContent;

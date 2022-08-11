@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
 *,
 *::before,
 *::after {
@@ -8,7 +10,7 @@
 
 body {
   min-height: 100vh;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Russo One', 'Courier New', Courier, monospace;
 }
 
 .center {
@@ -19,16 +21,17 @@ body {
 
 .page {
   min-height: 100vh;
+  background-color: rgb(219, 249, 253);
 }
 
 .calculator {
-  width: 17rem;
-  height: 30rem;
+  width: 17.35rem;
+  height: 32.5rem;
   display: grid;
   grid-template-columns: 4fr 4fr 2.25fr;
-  grid-template-rows: 2.4fr 8fr;
+  grid-template-rows: 2.55fr 8fr;
   gap: .65rem .35rem;
-  padding: 1.55rem .5rem .5rem .5rem;
+  padding: 1.65rem .5rem .5rem .5rem;
   border: .35rem solid black;
   border-radius: .5rem;
 }
@@ -39,15 +42,28 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.5rem;
   border: .55rem solid black;
   border-radius: .7rem;
-  padding: .5rem .55rem;
+  padding: .8rem .8rem .4rem .8rem;
 }
 
 .display1, .display2 {
-  text-align: end;
-  font-size: 1.1rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
   word-break: break-all;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.display1 {
+  font-size: 1.05rem;
+  letter-spacing: .05rem;
+}
+
+.display2 {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .left-buttons {
@@ -79,11 +95,13 @@ body {
 .btn {
   margin: .15rem;
   border: .15rem solid black;
-  border-radius: .25rem;
+  border-radius: .3rem;
   font-weight: bold;
+  letter-spacing: .05rem;
+  font-size: 1.2rem;
 }
 
-.btn:hover {
+.btn:active {
   transform: scale(0.95);
 }
 
