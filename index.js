@@ -106,6 +106,7 @@ function appendPercent() {
 function appendDecimal() {
   console.log('D')
   if (d2Content.includes('.')) return;
+  if (d2Content.endsWith('%')) return;
   if (!d2Content || d2Content.endsWith('-')) {
     d2.textContent += '0.';
     d2Content = d2.textContent;
