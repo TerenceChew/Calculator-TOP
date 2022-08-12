@@ -1,4 +1,4 @@
 # Calc U Later
 Calculator built with HTML, CSS and JS.
 
-[Live Demo](https://terencechew.github.io/calculator-TOP/) :point_left:
+[Live Demo](https://terencechew.github.io/calc-u-later/) :point_left:
