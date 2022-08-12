@@ -30,15 +30,15 @@ decimalBtn.addEventListener('click', appendDecimal);
 unaryBtn.addEventListener('click', appendUnary);
 equalBtn.addEventListener('click', evaluate);
 
-function appendNumber(e) {
+function appendNumber(e, key = null) {
   console.log('N')
-  const num = e.target.textContent;
+  const num = key ? key : e.target.textContent;
   d2.textContent += num;
   d2Content = d2.textContent;
 }
 
-function appendOperator(e) {
-  const operator = e.target.textContent;
+function appendOperator(e, key = null) {
+  const operator = key ? key : e.target.textContent;
   console.log('Ope')
   if (!d1Content && !d2Content) return;
 
@@ -97,16 +97,16 @@ function del() {
 
 function appendPercent() {
   console.log('P')
-  if (d2.textContent.includes('%')) return;
-  if (!d2.textContent) return;
+  if (!d2Content) return;
+  if (d2Content.includes('%')) return;
   d2.textContent += '%';
   d2Content = d2.textContent;
 }
 
 function appendDecimal() {
   console.log('D')
-  if (d2.textContent.includes('.')) return;
-  if (!d2.textContent) {
+  if (d2Content.includes('.')) return;
+  if (!d2Content || d2Content.endsWith('-')) {
     d2.textContent += '0.';
     d2Content = d2.textContent;
   } else {
@@ -117,7 +117,7 @@ function appendDecimal() {
 
 function appendUnary() {
   console.log('U')
-  if (!d2.textContent) {
+  if (!d2Content) {
     d2.textContent += '-';
     d2Content = d2.textContent;
     return;
@@ -216,6 +216,34 @@ function operate(operator, a, b) {
   }
 
   return result;
+}
+
+// Keyboard support
+window.addEventListener('keydown', handleKeydown);
+
+function handleKeydown(e) {
+  console.log('handleKeydown')
+  const key = e.key;
+
+  if ('1234567890'.includes(key)) appendNumber(null, key);
+  
+  if ('+-'.includes(key)) appendOperator(null, key);
+
+  if (key === '*' || key === 'x') appendOperator(null, '×');
+
+  if (key === '/') appendOperator(null, '÷');
+  
+  if (key === 'Enter') evaluate();
+
+  if (key === 'Backspace') del();
+
+  if (key === 'Escape') clearDisplays();
+
+  if (key === '.') appendDecimal();
+
+  if (key === '%') appendPercent();
+
+  if (key === 'u') appendUnary();
 }
 
 // Footer
