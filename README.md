@@ -1,4 +1,4 @@
 # Calc U Later
-A calculator built with HTML, CSS and JS.
+Calculator built with HTML, CSS and JS.
 
 [Live Demo](https://terencechew.github.io/calculator-TOP/) :point_left:
