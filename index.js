@@ -31,31 +31,31 @@ unaryBtn.addEventListener('click', appendUnary);
 equalBtn.addEventListener('click', evaluate);
 
 function appendNumber(e, key = null) {
-  console.log('N')
+  // console.log('appendNumber');
   const num = key ? key : e.target.textContent;
   d2.textContent += num;
   d2Content = d2.textContent;
 }
 
+// If n1 and currOperator are undefined,
+// they will be assigned once an operator is clicked
 function appendOperator(e, key = null) {
+  // console.log('appendOperator');
   const operator = key ? key : e.target.textContent;
-  console.log('Ope')
+  
   if (!d1Content && !d2Content) return;
 
   if (d1Content && !d2Content && lastCharIsOperator(d1Content)) {
     replaceOperator(operator);
-    console.log("1")
   } else if (currOperator && d2Content) {
     evaluate();
     continueOperation(operator);
-    console.log("2")
   } else {
     n1 = verifyOperandFormat(d2Content);
     currOperator = operator;
     d1.textContent = n1 + ' ' + operator;
     d1Content = d1.textContent;
     clearD2();
-    console.log("3")
   }
 }
 
@@ -83,20 +83,20 @@ function continueOperation(operator) {
 }
 
 function clearDisplays() {
-  console.log('C Dis')
+  // console.log('clearDisplays');
   clearD1();
   clearD2();
   resetOperation();
 }
 
 function del() {
-  console.log('DEL')
+  // console.log('del');
   d2.textContent = d2.textContent.slice(0, -1);
   d2Content = d2.textContent;
 }
 
 function appendPercent() {
-  console.log('P')
+  // console.log('appendPercent');
   if (!d2Content) return;
   if (d2Content.includes('%')) return;
   d2.textContent += '%';
@@ -104,7 +104,7 @@ function appendPercent() {
 }
 
 function appendDecimal() {
-  console.log('D')
+  // console.log('appendDecimal');
   if (d2Content.includes('.')) return;
   if (d2Content.endsWith('%')) return;
   if (!d2Content || d2Content.endsWith('-')) {
@@ -117,7 +117,7 @@ function appendDecimal() {
 }
 
 function appendUnary() {
-  console.log('U')
+  // console.log('Unary');
   if (!d2Content) {
     d2.textContent += '-';
     d2Content = d2.textContent;
@@ -129,8 +129,9 @@ function appendUnary() {
   d2Content = d2.textContent;
 }
 
+// n2 is assigned during evaluation
 function evaluate() {
-  console.log('E')
+  // console.log('evaluate');
   if (!d1Content || !d2Content) return;
 
   n2 = verifyOperandFormat(d2Content);
@@ -140,6 +141,7 @@ function evaluate() {
   resetOperation();
 }
 
+// Rounds result to five decimal places and remove trailing decimal zeros
 function processResult(result) {
   return parseFloat(result.toFixed(5));
 }
@@ -223,7 +225,7 @@ function operate(operator, a, b) {
 window.addEventListener('keydown', handleKeydown);
 
 function handleKeydown(e) {
-  console.log('handleKeydown')
+  // console.log('handleKeydown');
   const key = e.key;
 
   if ('1234567890'.includes(key)) appendNumber(null, key);
