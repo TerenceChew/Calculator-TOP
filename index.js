@@ -250,8 +250,8 @@ function handleKeydown(e) {
 }
 
 // Footer
-const footerText = document.querySelector('.footer-text');
+const currYearSpan = document.querySelector('.curr-year');
 let currYear = new Date().getFullYear();
-footerText.textContent = `Copyright Ⓒ ${currYear} Terence`;
+currYearSpan.innerText = `${currYear}`;
 
 

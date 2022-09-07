@@ -116,7 +116,13 @@ footer {
 }
 
 footer p {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: monospace;
+  font-size: .85rem;
+}
+
+.copyright-icon {
+  font-size: 1.55rem;
+  vertical-align: sub;
 }
 
 footer a {
