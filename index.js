@@ -252,6 +252,6 @@ function handleKeydown(e) {
 // Footer
 const currYearSpan = document.querySelector('.curr-year');
 let currYear = new Date().getFullYear();
-currYearSpan.innerText = `${currYear}`;
+currYearSpan.innerText = currYear;
 
 
