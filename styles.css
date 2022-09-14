@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;800&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;800&family=Russo+One&family=PT+Mono&display=swap');
 
 *,
 *::before,
@@ -116,12 +116,12 @@ footer {
 }
 
 footer p {
-  font-family: monospace;
-  font-size: .85rem;
+  font-family: 'PT Mono', monospace;
+  font-size: .95rem;
 }
 
 .copyright-icon {
-  font-size: 1.55rem;
+  font-size: 2rem;
   vertical-align: sub;
 }
 
